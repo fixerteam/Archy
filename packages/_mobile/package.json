@@ -1,0 +1,21 @@
+{
+  "name": "archy-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios:device": "react-native run-ios --device",
+    "ios:simulator": "react-native run-ios --simulator=\"iPhone X\"",
+    "start": "react-native start",
+    "lint": "eslint ./ --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.9.0",
+    "react-native": "0.61.4"
+  },
+  "devDependencies": {
+    "@types/react-test-renderer": "16.9.0",
+    "react-test-renderer": "16.9.0"
+  }
+}
