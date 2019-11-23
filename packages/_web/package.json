@@ -13,11 +13,16 @@
     "typescript": "^3.7.2",
     "@archy/core": "1.0.0"
   },
+  "devDependencies": {
+    "react-app-rewired": "2.1.5",
+    "get-dev-paths": "0.1.1",
+    "customize-cra": "0.9.1"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": "react-app"

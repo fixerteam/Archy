@@ -19,7 +19,32 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen'
 
-import test from '@archy/core'
+import { appBuilder, Plugin, ServicePlugin, Injector, testInjector } from '@archy/core'
+
+appBuilder.use({
+  type: 'view',
+  name: 'testView',
+  create: (injector: Injector) => {
+    return 'testView'
+  }
+} as Plugin)
+
+appBuilder.use({
+  type: 'view',
+  name: 'testView2',
+  create: (injector: Injector) => {
+    console.log('TCL: testView2', injector.getView('testView'))
+    return 'test 2'
+  }
+} as Plugin)
+
+appBuilder.use({
+  type: 'service',
+  name: 'logger',
+  create: (injector: Injector) => injector.getView('testView2')
+} as ServicePlugin)
+
+console.log("TCL: testInjector.getView('testView2')", testInjector.getService('logger'))
 
 const App = () => {
   const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null
@@ -39,7 +64,7 @@ const App = () => {
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your
-                edits.{test}
+                edits.
               </Text>
             </View>
             <View style={styles.sectionContainer}>
