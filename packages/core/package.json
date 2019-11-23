@@ -1,0 +1,12 @@
+{
+  "name": "@archy/core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Core module for Archy",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "npm pack && mv -f *.tgz ../../libs/",
+    "lint": "eslint src/ --fix"
+  },
+  "author": "Fixer Team"
+}

@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react'
+import * as React from 'react'
 import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native'
 
 import {
@@ -18,6 +18,8 @@ import {
   DebugInstructions,
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen'
+
+import test from '@archy/core'
 
 const App = () => {
   const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null
@@ -37,7 +39,7 @@ const App = () => {
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your
-                edits.
+                edits.{test}
               </Text>
             </View>
             <View style={styles.sectionContainer}>
