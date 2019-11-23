@@ -1,5 +1,9 @@
 export enum LogLevel {
-  verbose, info, warning, configuration_only, error
+  verbose,
+  info,
+  warning,
+  configuration_only,
+  error
 }
 
 /**
@@ -9,7 +13,7 @@ export enum LogLevel {
  * (пока это не реализовано но в будущем именно так и будет работать)
  */
 export interface LoggerService {
-    /**
+  /**
    * Установить уровень логирования.
    * @type {Function}
    * @param {LogLevel} level - уровень логирования,

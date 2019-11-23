@@ -19,12 +19,17 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen'
 
-import { appBuilder, Plugin, ServicePlugin, Injector, testInjector } from '@archy/core'
+import { appBuilder, Plugin, Injector, testInjector, LoggerService } from '@archy/core'
+import LoggerPlugin from '@archy/console-logger'
+
+appBuilder.use(LoggerPlugin)
 
 appBuilder.use({
   type: 'view',
   name: 'testView',
   create: (injector: Injector) => {
+    const logger = injector.getService('logger') as LoggerService
+    logger.log('TCL: testView', injector.getView('testView2'))
     return 'testView'
   }
 } as Plugin)
@@ -33,18 +38,13 @@ appBuilder.use({
   type: 'view',
   name: 'testView2',
   create: (injector: Injector) => {
-    console.log('TCL: testView2', injector.getView('testView'))
-    return 'test 2'
+    const logger = injector.getService('logger') as LoggerService
+    logger.log('TCL: testView2')
+    return 'testView2'
   }
 } as Plugin)
 
-appBuilder.use({
-  type: 'service',
-  name: 'logger',
-  create: (injector: Injector) => injector.getView('testView2')
-} as ServicePlugin)
-
-console.log("TCL: testInjector.getView('testView2')", testInjector.getService('logger'))
+testInjector.getView('testView')
 
 const App = () => {
   const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null

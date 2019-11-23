@@ -1,0 +1,15 @@
+{
+  "name": "@archy/console-logger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Logger module for Archy which print messages into JS console",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "npm pack && mv -f *.tgz ../../libs/",
+    "lint": "eslint src/ --fix"
+  },
+  "author": "Fixer Team",
+  "dependencies": {
+    "@archy/core": "1.0.0"
+  }
+}
