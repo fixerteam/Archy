@@ -1,4 +1,4 @@
-import { LoggerService, LogLevel, ServicePlugin, Injector } from '@archy/core'
+import { LoggerService, LogLevel, PluginFactory, Injector } from '@archy/core'
 
 class ConsoleLogger implements LoggerService {
   private logLevel = LogLevel.verbose
@@ -26,8 +26,8 @@ class ConsoleLogger implements LoggerService {
   }
 }
 
-export default {
+export default PluginFactory.create({
   type: 'service',
   name: 'logger',
   create: (injector: Injector) => new ConsoleLogger()
-} as ServicePlugin
+})
