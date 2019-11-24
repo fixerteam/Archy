@@ -14,7 +14,8 @@
     "react": "16.9.0",
     "react-native": "0.61.4",
     "@archy/core": "1.0.0",
-    "@archy/console-logger": "1.0.0"
+    "@archy/console-logger": "1.0.0",
+    "@archy/mobile-launcher": "1.0.0"
   },
   "devDependencies": {
     "@types/react-test-renderer": "16.9.0",

@@ -1,8 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
 import * as serviceWorker from './serviceWorker'
+
+import { appBuilder } from '@archy/core'
+import WebLauncher from '@archy/web-launcher'
+
+appBuilder.use(WebLauncher)
+
+const App = appBuilder.launcher()
 
 ReactDOM.render(<App />, document.getElementById('root'))
 

@@ -7,6 +7,7 @@
     "jsx": "react",
     "skipLibCheck": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "isolatedModules": true
   },
   "include": ["src"]

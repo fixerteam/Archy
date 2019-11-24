@@ -2,24 +2,7 @@ import * as React from 'react'
 import logo from './logo.svg'
 import './App.css'
 
-import { appBuilder, PluginFactory, Injector, testInjector, LoggerService } from '@archy/core'
-import LoggerPlugin from '@archy/console-logger'
-
-appBuilder.use(LoggerPlugin)
-
-appBuilder.use(
-  PluginFactory.create({
-    type: 'view',
-    name: 'testView',
-    create: (injector: Injector) => {
-      const logger = injector.getService('logger') as LoggerService
-      logger.info('TCL: testView2')
-      return ''
-    }
-  })
-)
-
-testInjector.getView('testView')
+import { PluginFactory } from '@archy/core'
 
 const App = () => {
   return (
@@ -37,4 +20,8 @@ const App = () => {
   )
 }
 
-export default App
+export default PluginFactory.create({
+  type: 'service',
+  name: 'launcher',
+  create: () => App
+})

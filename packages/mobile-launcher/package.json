@@ -1,0 +1,17 @@
+{
+  "name": "@archy/mobile-launcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mobile version app launcher base on Archy",
+  "main": "src/index.tsx",
+  "scripts": {
+    "build": "npm pack && mv -f *.tgz ../../libs/",
+    "lint": "eslint src/ --fix"
+  },
+  "author": "Fixer Team",
+  "dependencies": {
+    "react": "16.9.0",
+    "react-native": "0.61.4",
+    "@archy/core": "1.0.0"
+  }
+}

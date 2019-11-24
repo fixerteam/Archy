@@ -3,6 +3,7 @@ import { Injector } from './Injector'
 
 export interface AppBuilder {
   use(plugin: Plugin): void
+  launcher(): any
 }
 
 export class AppContainer implements Injector, AppBuilder {
@@ -41,6 +42,10 @@ export class AppContainer implements Injector, AppBuilder {
     } else {
       this.usePlugin(plugin)
     }
+  }
+
+  launcher() {
+    return this.getService('launcher')
   }
 
   private initService<T>(servicePlugin: ServicePlugin): T {

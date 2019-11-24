@@ -1,13 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import * as React from 'react'
 import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native'
 
@@ -19,24 +9,7 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen'
 
-import { appBuilder, PluginFactory, Injector, testInjector, LoggerService } from '@archy/core'
-import LoggerPlugin from '@archy/console-logger'
-
-appBuilder.use(LoggerPlugin)
-
-appBuilder.use(
-  PluginFactory.create({
-    type: 'view',
-    name: 'testView',
-    create: (injector: Injector) => {
-      const logger = injector.getService('logger') as LoggerService
-      logger.info('TCL: testView2')
-      return ''
-    }
-  })
-)
-
-testInjector.getView('testView')
+import { PluginFactory } from '@archy/core'
 
 const App = () => {
   const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null
@@ -122,4 +95,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default App
+export default PluginFactory.create({
+  type: 'service',
+  name: 'launcher',
+  create: () => App
+})

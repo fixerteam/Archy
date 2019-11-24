@@ -1,9 +1,8 @@
-/**
- * @format
- */
-
 import { AppRegistry } from 'react-native'
-import App from './App'
+import MobileLauncher from '@archy/mobile-launcher'
+import { appBuilder } from '@archy/core'
 import { name as appName } from './app.json'
 
-AppRegistry.registerComponent(appName, () => App)
+appBuilder.use(MobileLauncher)
+
+AppRegistry.registerComponent(appName, () => appBuilder.launcher())
