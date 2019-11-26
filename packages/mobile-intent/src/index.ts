@@ -1,5 +1,15 @@
-import { Linking, Share, NativeModules } from 'react-native'
-import { IntentService, PlainTextParams, EMailParams, SmsParams, AppParams, AppParamsWithData, AppResult, PluginFactory, Injector } from '@archy/core'
+import { Linking, Share, NativeModules, Platform } from 'react-native'
+import {
+  IntentService,
+  PlainTextParams,
+  EMailParams,
+  SmsParams,
+  AppParams,
+  AppParamsWithData,
+  PluginFactory,
+  Injector,
+  AppResult
+} from '@archy/core'
 
 const { IntentLauncher } = NativeModules
 
@@ -8,32 +18,60 @@ class LinkingService implements IntentService {
     return Share.share({ message: params.text, title: params.title })
   }
 
-  sendMail(params: EMailParams): void {
-    IntentLauncher.sendEMail(params)
-  }
-  
-  sendSms(params: SmsParams): void {
-    IntentLauncher.sendSms(params)
-  }
-
-  sendPhoneCall(phoneNumber: string): void {
-    IntentLauncher.callPhone(phoneNumber)
+  async sendMail(params: EMailParams): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.sendMail(params)
+    } else {
+      return false
+    }
   }
 
-  isAppInstalled(appId: string): Promise<boolean> {
-    return IntentLauncher.isAppInstalled(appId)
+  async sendSms(params: SmsParams): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.sendSms(params)
+    } else {
+      return false
+    }
   }
 
-  openApp(params: AppParams): Promise<boolean> {
-    return IntentLauncher.openApp(params)
+  async sendPhoneCall(phoneNumber: string): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.sendPhoneCall(phoneNumber)
+    } else {
+      return false
+    }
   }
 
-  openSettings(screenId: string): void {
-    IntentLauncher.openSettings(screenId)
+  async isAppInstalled(appId: string): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.isAppInstalled(appId)
+    } else {
+      return false
+    }
   }
 
-  openAppWithResult(params: AppParamsWithData): Promise<AppResult> {
-    return IntentLauncher.openAppWithResult(params)
+  async openApp(params: AppParams): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.openApp(params)
+    } else {
+      return false
+    }
+  }
+
+  async openSettings(screenId: string): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.openSettings(screenId)
+    } else {
+      return false
+    }
+  }
+
+  async openAppWithResult(params: AppParamsWithData): Promise<AppResult> {
+    if (Platform.OS === 'android') {
+      return IntentLauncher.openAppWithResult(params)
+    } else {
+      return { data: 'not_supported' }
+    }
   }
 
   async openURL(url: string): Promise<boolean> {
