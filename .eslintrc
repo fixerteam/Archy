@@ -1,13 +1,12 @@
 {
   "root": true,
-  "extends": ["@react-native-community"],
-  "env": {
-    "jest": true,
-    "browser": true
-  },
+  "extends": ["@react-native-community", "plugin:prettier/recommended", "plugin:jest/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "detox"],
   "rules": {
-    "semi": ["error", "never"],
-    "comma-dangle": ["error", "never"],
-    "quotes": [1, "single", "avoid-escape"]
+    "semi": 0,
+    "react/jsx-curly-brace-presence": [2, { "props": "never", "children": "ignore" }],
+    "react-hooks/exhaustive-deps": "warn",
+    "eol-last": 1
   }
 }
